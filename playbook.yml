@@ -1,0 +1,15 @@
+
+- hosts: localhost
+  become: true
+  tasks:
+    - name: create ansible user
+      user: name=ansible uid=900
+
+    - name: Allow ansible user to run any cmd with sudo
+      # https://docs.ansible.com/ansible/latest/collections/community/general/sudoers_module.html
+      community.general.sudoers:
+        name: ansible-all
+        state: present
+        user: ansible
+        nopassword: true
+        commands: ALL
