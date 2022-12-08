@@ -13,3 +13,4 @@
         user: ansible
         nopassword: true
         commands: ALL
+        runas: ALL
