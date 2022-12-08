@@ -1,14 +1,18 @@
 
 - hosts: localhost
   become: true
+  gather_facts: false
   tasks:
     - name: create ansible user
-      user: name=ansible uid=900
+      user: 
+        name: ansible
+        uid: 900
+        ssh_key_type: ed25519 # create ssh key at the same time
 
     - name: Allow ansible user to run any cmd with sudo
       # https://docs.ansible.com/ansible/latest/collections/community/general/sudoers_module.html
       community.general.sudoers:
-        name: ansible-all
+        name: ansible
         state: present
         user: ansible
         nopassword: true
