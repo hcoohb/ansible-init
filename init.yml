@@ -23,11 +23,11 @@
       # https://docs.ansible.com/ansible/latest/collections/ansible/builtin/copy_module.html
       copy:
         src: "/home/hcooh/.ssh/id_ed25519"
-        dest: "/root/.ssh/id_ed25519_hcooh"
+        dest: "/root/.ssh/id_ed25519"
         mode: 0600
-        owner: hcooh
+        owner: root
 
-    - name: Add the githib.com ssh key fingerprint so that it does not fail at first clone
+    - name: Add the github.com ssh key fingerprint so that it does not fail at first clone
       # https://docs.ansible.com/ansible/latest/collections/ansible/builtin/known_hosts_module.html
       known_hosts:
         path: /root/.ssh/known_hosts
