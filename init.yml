@@ -4,12 +4,28 @@
   gather_facts: false
   tasks:
     - name: create hcooh user with ssh key
+      # https://docs.ansible.com/ansible/latest/collections/ansible/builtin/user_module.html
       user: 
         name: hcooh
         uid: 1000
         generate_ssh_key: yes
         ssh_key_type: ed25519
         ssh_key_file: .ssh/id_ed25519
+
+    - name: Ensure .ssh directory exists.
+      # https://docs.ansible.com/ansible/latest/collections/ansible/builtin/file_module.html
+      file:
+        dest: "/root/.ssh"
+        mode: 0700
+        owner: root
+        state: directory
+    - name: copy private key to root folder
+      # https://docs.ansible.com/ansible/latest/collections/ansible/builtin/copy_module.html
+      copy:
+        src: "/home/hcooh/.ssh/id_ed25519"
+        dest: "/root/.ssh/id_ed25519_hcooh"
+        mode: 0600
+        owner: hcooh
 
     - name: Display SSH public key for github
       debug:
