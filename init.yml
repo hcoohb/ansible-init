@@ -10,6 +10,7 @@
         generate_ssh_key: yes
         ssh_key_type: ed25519
         ssh_key_file: .ssh/id_ed25519
+        ssh_key_comment: hcoohb@gmail.com
 
     - name: Allow ansible user to run any cmd with sudo
       # https://docs.ansible.com/ansible/latest/collections/community/general/sudoers_module.html
